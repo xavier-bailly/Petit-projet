@@ -5,33 +5,44 @@
 
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
-    <body>
-        <form>
+    <body onload="choixLan()">
+
+        <form action="#" onsubmit="main(); return false" class="container">
             <h1>Petit Projet</h1>
+            <img id="img" src="img/promo.gif">
+            <button class="button" onclick="refresh()">Refresh</button>
             <p>
-                <label for="pseudo">Pseudo :</label>
-                <input type="text" name="pseudo" id="pseudo" required>
+                <label for="pseudo">Pseudo :</label><br>
+                <input class="form" type="text" name="pseudo" id="pseudo" required>
                 <span id="aidePseudo"></span>
             </p>
             <p>
-                <label for="mdp">Mot de passe</label> :
-                <input type="password" name="mdp" id="mdp" required>
+                <label for="mdp">Mot de passe</label> :<br>
+                <input class="form" type="password" name="mdp" id="mdp" required>
                 <span id="aideMdp"></span>
                 <input type="checkbox" id="check" onclick="montrerPass()">Montrer mot de passe</input>
             </p>
 
             <p>
-                <label for="mail">Mail :</label>
-                <input type="email" name="mail" id="mail" required placeholder="utilisateur@domaine.com">
+                <label for="mail">Mail :</label><br>
+                <input class="form" type="email" name="mail" id="mail" required placeholder="utilisateur@domaine.com">
                 <span id="aideMail"></span>
             </p>
             <p>
-                <label for="nationalite">Nationalité :</label>
-                <select name="nationalite" id="nationalite">
-                    <option value="FR" selected>Française</option>
-                    <option value="BE">Belge</option>
-                    <option value="SUI">Suisse</option>
-                    <option value="XX">Autre</option>
+                <label for="age">age :</label><br>
+                <input class="form" type="text" name="age" id="age" required>
+                <span id="old"></span>
+            </p>
+            <p id="natio">
+                <label for="nationalite">Nationalité :</label><br>
+                <select class="form" name="nationalite" id="nationalite">
+                </select>
+            </p>
+            <p id="sex">
+                <label for="sexe">Sexe :</label><br>
+                <select class="form" name="sexe" id="sexe">
+                    <option value='M'>Homme</option>
+                    <option value='F'>Femme</option>
                 </select>
             </p>
 
@@ -39,6 +50,7 @@
             <input type="reset" value="Annuler">
         </form>
         <p id="ecri"></p>
+        <p id="ecri1"></p>
         <script type="text/javascript" src="js/main.js"></script>
     <footer>
         <a href="https://github.com/xavier-bailly/Petit-projet">Lien github</a>

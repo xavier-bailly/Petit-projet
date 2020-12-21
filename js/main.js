@@ -1,6 +1,8 @@
-
 "use strict"
 let donner = [];
+let donnee = {pseudo : 'xavier', age : '18', sex : 'M'};
+let age;
+let prix = 10;
 function montrerPass() {
     let pass = document.getElementById("mdp");
     if(document.getElementById("check").checked) {
@@ -10,7 +12,7 @@ function montrerPass() {
         pass.setAttribute("type","password");
     }
 }
-//
+
 document.getElementById("mdp").addEventListener("input", function (e) {
     let mdp = e.target.value;
     let longueurMdp = "faible";
@@ -31,6 +33,10 @@ function main() {
     motDePass();
     nati();
     setElem();
+    getEmail();
+    donne();
+    tri();
+    calc();
 }
 function pseudo() {
     let pseudo = document.getElementById("pseudo").value;
@@ -42,29 +48,87 @@ function motDePass() {
     console.log("Le mot de passe est: " + mdp);
     donner.push(mdp);
 }
+function getEmail() {
+    let getmail = document.getElementById("mail").value;
+    console.log("Votre mail est: " + getmail);
+    donner.push(getmail);
+}
 function nati() {
     let natio = document.getElementById("nationalite").value;
-    if (natio == "FR") {
-        console.log("Vous êtes français")
-        let fr = "français";
-        donner.push(fr);
-    }
-    else if (natio == "BE") {
-        console.log("Vous êtes Belge")
-        let be = "belge";
-        donner.push(be);
-    }
-    else if (natio == "SUI") {
-        console.log("Vous êtes Suisse")
-        let sui = "suisse";
-        donner.push(sui);
-    }
-    else {
-        console.log("vous avez une autre nationalité")
-        let autre = "autre"
-        donner.push(autre);
+    switch(natio) {
+        case "FR" :
+            console.log("fr");
+            donner.push(natio);
+            break;
+        case "BE" :
+            console.log("be");
+            donner.push(natio);
+            break;
+        case "SUI" :
+            console.log("sui");
+            donner.push(natio);
+            break;
+        default :
+            console.log("autre");
+            donner.push(natio);
+            break;
     }
 }
+function donne() {
+    age = document.getElementById("age").value;
+    console.log("Votre age est " + age);
+    let pseudo = document.getElementById("pseudo").value;
+    let sex = document.getElementById('sexe').value;
+    console.log("Votre sexe est " + sex);
+    donnee.sex = sex;
+    donnee.pseudo = pseudo;
+    donnee.age = age;
+}
+
 function setElem() {
-    document.getElementById("ecri").innerText = "Bonjour " + donner[0] + " votre formulaire a bien été pris en compte";
+    let pseudo = document.getElementById("pseudo").value;
+    document.getElementById("ecri").innerText = "Bonjour " + pseudo + " votre formulaire a bien été pris en compte";
+}
+function choixLan () {
+    document.getElementById("nationalite").innerHTML =
+        "<option value='FR' selected>Français</option>"+
+        "<option value='BE'>Belge</option>"+
+        "<option value='SUI'>Suisse</option>"+
+        "<option value='XX'>Autre</option>";
+}
+function refresh() {
+    let r = confirm("Voulez vous vraiment refresh ?");
+    if (r === true) {
+        alert("refresh");
+        window.location.reload();
+    }
+    else {
+        alert("pas de refresh");
+    }
+}
+function tri() {
+    donner.sort()
+}
+function calc() {
+    if (age >=18 && age <=25) {
+        let promo = prix*age/10;
+        document.getElementById("ecri1").innerText = "vous avez droit a notre offre spéciale étudiant. L'offre est de " + promo.toFixed(2) + "€.";
+    }
+    else if (age > 25 && age <=60) {
+        document.getElementById("ecri1").innerText = "vous n'avez pas d'offre.";
+    }
+    else if (age > 60 && age <=130) {
+        let promo = prix*age/33;
+        document.getElementById("ecri1").innerText = "vous avez une offre senior. L'offre est de " + promo.toFixed(2) + "€.";
+    }
+    else if (age > 130) {
+        document.getElementById("ecri1").innerText = "à notre connaissance personne n'est aussi vieux que sa.";
+    }
+    else if (age >= 0 &&  age < 18) {
+        document.getElementById("ecri1").innerText = "mais nous vous prévenons que votre demande peut être annulé car vous n'avez pas le droit de vous inscrire.";
+    }
+    else {
+        document.getElementById("ecri1").innerText = "Erreur lors de l'encodage de votre age.";
+    }
+
 }
